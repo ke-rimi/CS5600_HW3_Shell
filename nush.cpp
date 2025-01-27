@@ -27,11 +27,11 @@ void executeCommand(vector<string> &args) {
     pid_t pid = fork();
     if (pid < 0) {
         //fork failed
-        cerr << "nush error: fork failed" << endl;
+        cerr << "nush error: fork failed " << endl;
     } else if (pid == 0) {
         //child process
         execvp(argv[0], argv.data());
-        cerr << "nush error: Command not found" << argv[0] << endl;
+        cerr << "nush error: Command not found " << argv[0] << endl;
         exit(1);
     } else {
         //parent process
@@ -39,10 +39,8 @@ void executeCommand(vector<string> &args) {
         waitpid(pid, &status, 0); // wait for the child process to finish
 
         if (WIFEXITED(status)) {
-            int exit_status = WEXITSTATUS(status);
-            if (exit_status != 0) {
-                cerr << "nush error: Command failed with status " << exit_status << endl;
-            }
+            // Print the status code of the child process
+            cout << "nush status: " << WEXITSTATUS(status) << endl;
         }
     }
 
@@ -70,7 +68,7 @@ int main() {
             token = strtok(nullptr, " ");
         }
 
-        if (!arg.empty()) {
+        if (!args.empty()) {
             executeCommand(args);
         }
     }

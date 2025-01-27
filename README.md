@@ -12,6 +12,8 @@ Instructions:
 
 Test Cases:
 - ls
+- ls -l
+- wc nush.cpp
 - echo Hello World
 - ls filedoesnotexist
 - fakecmd
@@ -19,3 +21,6 @@ Test Cases:
 
 Known Issues:
 - The shell does not support input/output redirection or pipes.
+
+Execute Example:
+![Results](ScreenShot.png)
